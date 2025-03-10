@@ -214,6 +214,10 @@ class Stack {
   // console.log(myBrowser.forward());
   // console.log(myBrowser.forward());
   // console.log(myBrowser.forward());
+
+
+
+  
   // todo Post-Session Practice Questions:
   // todo Implement a circular queue.
   // todo Sort a stack using recursion.
