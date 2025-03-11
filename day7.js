@@ -352,7 +352,7 @@ class designData {
     return false;
   }
   isFull() {
-    return this.stack.length >= this.size;
+    return this.stack.length <= this.size;
   }
   push(data) {
     if (this.isFull()) return "Stack Overflow";
@@ -388,16 +388,31 @@ class designData {
     if (this.isEmpty()) return 'Queue is empty';
     let newArr = [...this.stack];
     let sortArr = this.minMaxsort(newArr)
-    return sortArr[sortArr.length-1]
+    return sortArr[sortArr.length - 1]
+  }
+  reverseKElements(k) {
+    if (this.isEmpty()) return 'Queue is empty';
+    const arr = [...this.stack];
+    let split = arr.splice(0, k-1)
+    split.reverse()
+    return [...split,...arr]
+
   }
 
 }
 const design = new designData();
 console.log(design.isEmpty())
 console.log(design.getStack())
-design.push(19)
-design.push(8)
-design.push(58)
+design.push(5)
+// design.push(10)
+design.push(15)
+// design.push(20)
+design.push(25)
+// design.push(30)
+design.push(35)
+design.push(45)
+design.push(55)
+// design.push(40)
 // design.pop()
 console.log(design.getMin())
 console.log(design.getMax())
@@ -407,7 +422,16 @@ console.log(design.isEmpty())
 
 
 // todo Reverse the first k elements of a queue.
-// todo Implement a priority queue.
+
+console.log(design.getStack())
+console.log(design.reverseKElements(5))
+
 // todo Find the minimum element in a stack.
+console.log(design.getStack())
+console.log(design.getMin())
+
+// todo Implement a priority queue.
+
+
 // todo Check if a string can be reduced to an empty string by recursive removal of adjacent duplicates.
 // todo Design a system that supports efficient insertion and retrieval of most recent elements (deque).
