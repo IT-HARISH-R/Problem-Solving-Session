@@ -497,3 +497,4 @@ console.log(peakIndex([2, 4, 6, 8, 10, 5, 1]));
 console.log(peakIndex([1, 2, 3, 4, 5, 3, 1]));  
 console.log(peakIndex([1, 100, 50])); 
 
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
