@@ -202,7 +202,7 @@ function searchInSortedArr(arr = [], target = 0) {
   while (start <= end) {
     let mid = Math.floor(start + (end - start) / 2)
     if (arr[mid] === target) {
-      return end;
+      return mid;
     }
     else if (arr[mid] > target) {
       end = mid - 1
