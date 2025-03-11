@@ -222,17 +222,17 @@ function browserHistory() {
 
 
 class circularQueue {
-  constructor(size=4) {
-    console.log(size)
-    this.stack = [];
+  constructor(size = 4) {
+    this.stack = new Array(size);
     this.size = size;
     this.top = -1;
+    this.maxStack = [];
   }
-  
+
   isEmpty() {
     return this.top == -1;
   }
-  
+
   isFull() {
     console.log(this.size)
     return this.top + 1 == this.size;
@@ -243,17 +243,34 @@ class circularQueue {
       return "Stack Overflow";
     }
     this.top++;
-    this.stack.push(data);
-  }
+    this.stack[this.top] = (data);
+    if (this.maxStack.length === 0 || data >= this.maxStack[this.maxStack.length - 1]) {
+      this.maxStack.push(data);
+    }
+    console.log(this.maxStack)
 
+  }
+  getMax() {
+    return this.isEmpty() ? "Stack is empty" : this.maxStack[this.maxStack.length - 2];
+  }
   dequeue() {
     if (this.isEmpty()) {
       return "Stack Underflow";
     }
     this.top--;
-    return this.stack.pop();
+    const remove = this.stack.shift()
+    if (remove === this.maxStack[this.maxStack.length - 1]) {
+      this.maxStack.pop();
+    }
+    return remove;
   }
 
+  frontElement() {
+    if (this.isEmpty()) {
+      return 'Queue is empty'
+    }
+    return this.stack[0]
+  }
   peek() {
     if (this.isEmpty()) {
       return "Stack is empty";
@@ -263,29 +280,132 @@ class circularQueue {
   toArray() {
     return [...this.stack];
   }
-    
-  
-}
 
+}
 
 // todo Implement a circular queue.
 
-const cir=new circularQueue()
+const cq = new circularQueue(4);
 
-cir.enqueue(6)
-cir.enqueue(6)
-cir.enqueue(6)
-cir.enqueue(6)
-cir.dequeue()
-cir.dequeue()
-console.log(cir.isEmpty())
-console.log(cir.isFull())
-console.log(cir.toArray())
+cq.enqueue(20);
+cq.enqueue(10);
+cq.enqueue(30);
+cq.enqueue(40);
+console.log(cq.toArray());
+console.log(cq.dequeue());
+console.log(cq.toArray());
+console.log(cq.toArray());
+console.log(cq.frontElement());
+console.log(cq.isFull());
+console.log(cq.isEmpty());
+console.log(cq.toArray())
+
+
+
+// todo Find the maximum element in a stack in constant time.
+console.log(cq.getMax())
+cq.dequeue()
+cq.dequeue()
+console.log(cq.getMax())
+
 
 
 // todo Sort a stack using recursion.
-// todo Find the maximum element in a stack in constant time.
+
+function sortedInsert(stack, element) {
+  if (stack.length === 0 || stack[stack.length - 1] <= element) {
+    stack.push(element);
+    return;
+  }
+
+  let temp = stack.pop();
+  sortedInsert(stack, element);
+  stack.push(temp);
+}
+
+function sortStack(stack) {
+  if (stack.length === 0) return;
+
+  let temp = stack.pop();
+  sortStack(stack);
+  sortedInsert(stack, temp);
+}
+
+
+let stack = [3, 1, 4, 2, 5];
+// console.log("Original Stack:", [...stack]);
+
+sortStack(stack);
+// console.log("Sorted Stack:", stack);
+
+
 // todo Design a data structure supporting min, max, push, and pop in constant time.
+// min, max, push, and pop
+class designData {
+  constructor() {
+    this.stack = [];
+    this.size = -Infinity
+    this.top = -1
+  }
+  isEmpty() {
+    if (this.top === -1) return true;
+    return false;
+  }
+  isFull() {
+    return this.stack.length >= this.size;
+  }
+  push(data) {
+    if (this.isFull()) return "Stack Overflow";
+    this.top++;
+    console.log(this.top)
+    this.stack.push(data);
+  }
+  pop() {
+    if (this.isEmpty()) return 'Queue is empty';
+    this.top--;
+    this.stack.pop();
+  }
+  getStack() {
+    if (this.top === -1) return 'Queue is empty'
+    return [...this.stack]
+  }
+  sort() {
+    if (this.isEmpty()) return 'Queue is empty';
+    this.stack.sort((a, b) => a - b)
+  }
+  minMaxsort(data) {
+    if (this.isEmpty()) return 'Queue is empty';
+    return data.sort((a, b) => a - b)
+
+  }
+  getMin() {
+    if (this.isEmpty()) return 'Queue is empty';
+    let newArr = [...this.stack];
+    let sortArr = this.minMaxsort(newArr)
+    return sortArr[0]
+  }
+  getMax() {
+    if (this.isEmpty()) return 'Queue is empty';
+    let newArr = [...this.stack];
+    let sortArr = this.minMaxsort(newArr)
+    return sortArr[sortArr.length-1]
+  }
+
+}
+const design = new designData();
+console.log(design.isEmpty())
+console.log(design.getStack())
+design.push(19)
+design.push(8)
+design.push(58)
+// design.pop()
+console.log(design.getMin())
+console.log(design.getMax())
+design.sort()
+console.log(design.getStack())
+console.log(design.isEmpty())
+
+
 // todo Reverse the first k elements of a queue.
 // todo Implement a priority queue.
 // todo Find the minimum element in a stack.

@@ -239,7 +239,7 @@ function sortByFrequency(arr = []) {
 function lexicographically(arr = []) {
   return arr.sort()
 }
-console.log(lexicographically(["banana", "apple", "grape", "cherry", "date"]))
+// console.log(lexicographically(["banana", "apple", "grape", "cherry", "date"]))
 
 // todo Sort a matrix row-wise and column-wise.
 
@@ -279,7 +279,7 @@ let matrix = [
   [1, 12, 22]
 ];
 
-console.log(sortMatrix(matrix));
+// console.log(sortMatrix(matrix));
 
 
 
@@ -291,9 +291,9 @@ function kthSmallestElement(arr = [], target = 0) {
   console.log(arr)
   return arr[target - 1]
 }
-console.log(kthSmallestElement([3, 1, 2, 2, 4, 3, 5], 4))
-console.log(kthSmallestElement([1, 2, 3, 4, 5], 5))
-console.log(kthSmallestElement([2, 3, 4, 5], 1))
+// console.log(kthSmallestElement([3, 1, 2, 2, 4, 3, 5], 4))
+// console.log(kthSmallestElement([1, 2, 3, 4, 5], 5))
+// console.log(kthSmallestElement([2, 3, 4, 5], 1))
 
 // todo Sort an array containing negative and positive numbers, with negatives coming first.
 
