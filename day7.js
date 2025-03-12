@@ -287,26 +287,26 @@ class circularQueue {
 
 const cq = new circularQueue(4);
 
-cq.enqueue(20);
-cq.enqueue(10);
-cq.enqueue(30);
-cq.enqueue(40);
-console.log(cq.toArray());
-console.log(cq.dequeue());
-console.log(cq.toArray());
-console.log(cq.toArray());
-console.log(cq.frontElement());
-console.log(cq.isFull());
-console.log(cq.isEmpty());
-console.log(cq.toArray())
+// cq.enqueue(20);
+// cq.enqueue(10);
+// cq.enqueue(30);
+// cq.enqueue(40);
+// console.log(cq.toArray());
+// console.log(cq.dequeue());
+// console.log(cq.toArray());
+// console.log(cq.toArray());
+// console.log(cq.frontElement());
+// console.log(cq.isFull());
+// console.log(cq.isEmpty());
+// console.log(cq.toArray())
 
 
 
 // todo Find the maximum element in a stack in constant time.
-console.log(cq.getMax())
-cq.dequeue()
-cq.dequeue()
-console.log(cq.getMax())
+// console.log(cq.getMax())
+// cq.dequeue()
+// cq.dequeue()
+// console.log(cq.getMax())
 
 
 
@@ -340,7 +340,7 @@ sortStack(stack);
 
 
 // todo Design a data structure supporting min, max, push, and pop in constant time.
-// min, max, push, and pop
+
 class designData {
   constructor() {
     this.stack = [];
@@ -393,9 +393,9 @@ class designData {
   reverseKElements(k) {
     if (this.isEmpty()) return 'Queue is empty';
     const arr = [...this.stack];
-    let split = arr.splice(0, k-1)
+    let split = arr.splice(0, k - 1)
     split.reverse()
-    return [...split,...arr]
+    return [...split, ...arr]
 
   }
 
@@ -432,6 +432,140 @@ console.log(design.getMin())
 
 // todo Implement a priority queue.
 
+class priorityQueue {
+  constructor() {
+    this.stack = [];
+    this.top = -1;
+  }
+  isEmpty() {
+    if (this.top === -1) return true;
+    return false;
+  }
+  push(task, data) {
+    this.top++;
+    console.log(this.top)
+    const node = { task, data }
+    this.stack.push(node);
+  }
+  pop() {
+    if (this.isEmpty()) return 'Queue is empty';
+    this.top--;
+    this.stack.pop();
+  }
+  getStack() {
+    if (this.top === -1) return 'Queue is empty'
+    return [...this.stack]
+  }
+
+  sortReverse(data) {
+    if (this.isEmpty()) return 'Queue is empty';
+
+
+    console.log(data)
+    data = data.sort((a, b) => a - b)
+    console.log(data.sort((a, b) => a - b))
+
+    for (let i = 0; i < data.length; i++) {
+      for (let j = 0; j < data.length; j++) {
+        if (data[i].data > data[j].data) {
+          [data[i], data[j]] = [data[j], data[i]];
+        }
+      }
+    }
+    console.log(data)
+
+    return data
+
+  }
+  peek() {
+    const newArr = [...this.stack];
+
+    return newArr.length ? newArr[0] : null;
+  }
+
+}
+
+const pq = new priorityQueue();
+// pq.push("Task A", 3);
+// pq.push("Task B", 1);
+// pq.push("Task C", 2);
+// console.log(pq.getStack())
+// pq.pop()
+// console.log(pq.getStack())
+// console.log(pq.peek());
 
 // todo Check if a string can be reduced to an empty string by recursive removal of adjacent duplicates.
+
+function canReduceToEmptyString(s) {
+  let stack = [];
+
+  for (let char of s) {
+    if (stack.length > 0 && stack[stack.length - 1] === char) {
+      stack.pop();
+    } else {
+      stack.push(char);
+    }
+  }
+
+  return stack.length === 0;
+}
+
+// Example usage
+// console.log(canReduceToEmptyString("abbaca"));
+// console.log(canReduceToEmptyString("abccba"));
+// console.log(canReduceToEmptyString("aabbcc"));
+// console.log(canReduceToEmptyString("abc"));
+// console.log(canReduceToEmptyString("abba"));
+
 // todo Design a system that supports efficient insertion and retrieval of most recent elements (deque).
+class Deque {
+  constructor() {
+    this.items = [];
+  }
+
+  pushFront(value) {
+    this.items.unshift(value);
+  }
+
+  pushBack(value) {
+    this.items.push(value);
+  }
+
+  popFront() {
+    if (this.isEmpty()) return null;
+    return this.items.shift();
+  }
+
+  popBack() {
+    if (this.isEmpty()) return null;
+    return this.items.pop();
+  }
+
+  front() {
+    return this.isEmpty() ? null : this.items[0];
+  }
+
+  back() {
+    return this.isEmpty() ? null : this.items[this.items.length - 1];
+  }
+
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+
+const deque = new Deque();
+deque.pushBack(1);
+deque.pushBack(2);
+deque.pushFront(0);
+console.log(deque.front());
+console.log(deque.back());
+deque.popFront();
+deque.popBack();
+console.log(deque.isEmpty()); 
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
