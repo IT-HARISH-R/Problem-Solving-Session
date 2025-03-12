@@ -154,7 +154,10 @@ class Node {
   // console.log(list.deleteLast());
   // console.log(list.deleteLast());
   // console.log(list.deleteLast());
+
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // todo Post-Session Practice Questions:
+  
   // todo Reverse a linked list recursively.
   // todo Check if a linked list is a palindrome.
   // todo Remove the n-th node from the end of a linked list.
