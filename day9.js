@@ -391,21 +391,53 @@ class Tree {
     let result = [];
 
     while (queue.length > 0) {
-        let { node, level } = queue.shift();
+      let { node, level } = queue.shift();
 
-        if (level === k) {
-            result.push(node.data);
-        }
+      if (level === k) {
+        result.push(node.data);
+      }
 
-        if (level < k) {  // No need to explore further if we've reached level k
-            if (node.left) queue.push({ node: node.left, level: level + 1 });
-            if (node.right) queue.push({ node: node.right, level: level + 1 });
-        }
+      if (level < k) {  // No need to explore further if we've reached level k
+        if (node.left) queue.push({ node: node.left, level: level + 1 });
+        if (node.right) queue.push({ node: node.right, level: level + 1 });
+      }
+    }
+    return result;
+  }
+
+  Serialized(root = this.root, result = []) {
+    if (root === null) {
+      result.push("null");
+      return;
     }
 
-    console.log(`Nodes at distance ${k} from root:`, result);
-    return result;
-}
+    result.push(root.data);
+    this.Serialized(root.left, result);
+    this.Serialized(root.right, result);
+
+    return result.join(" ");
+  }
+
+  Deserialize(data) {
+    let nodes = data.split(" ");
+    let index = 0;
+
+    function buildTree() {
+      if (index >= nodes.length || nodes[index] === "null") {
+        index++;
+        return null;
+      }
+
+      let node = new TreeNode(parseInt(nodes[index]));
+      index++;
+      node.left = buildTree();
+      node.right = buildTree();
+      return node;
+    }
+
+    return buildTree();
+  }
+
 
 
 }
@@ -511,9 +543,30 @@ console.log(treeE.postOrder())
 console.log(treeE.printKDistance(2))
 
 
+// // todo Serialize and deserialize a binary tree.
+
+
+const tree1 = new Tree();
+tree1.root = new TreeNode(1);
+tree1.root.left = new TreeNode(2);
+tree1.root.right = new TreeNode(3);
+tree1.root.right.left = new TreeNode(4);
+tree1.root.right.right = new TreeNode(5);
+
+const serializedData = tree1.Serialized();
+console.log(serializedData);
+
+console.log(tree1.Deserialize(serializedData));
+
+
 
 // // todo Find the level with the maximum sum in a binary tree.
+
+const treemax = new Tree()
+
+
+
+
 // // todo Calculate the depth of the deepest leaf node.
 // // todo Convert a BST to a balanced BST.
 
-// // todo Serialize and deserialize a binary tree.
