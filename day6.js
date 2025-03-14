@@ -353,8 +353,32 @@ console.log(summ)
 
 // todo Sort a nearly sorted array (where each element is at most k places away from its target position).
 
-console.log(summ)
-console.log(summ.length)
-console.log(Math.floor(summ.length / 2) - 1)
-console.log(2 * 0 + 1)
-console.log(2 * 0 + 2)
+function sortNearly(arr = [], k) {
+
+  let minHeap = [];
+  let result = [];
+
+  for (let i = 0; i < Math.min(arr.length, k + 1); i++) {
+    minHeap.push(arr[i]);
+  }
+
+  minHeap.sort((a, b) => a - b);
+
+  for (let i = k + 1; i < arr.length; i++) {
+    result.push(minHeap.shift());
+    minHeap.push(arr[i]);
+    minHeap.sort((a, b) => a - b);
+  }
+
+  while (minHeap.length > 0) {
+    result.push(minHeap.shift())
+  }
+
+  return result
+}
+
+console.log(sortNearly([3, 2, 1, 5, 4, 6], 2))
+
+
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
