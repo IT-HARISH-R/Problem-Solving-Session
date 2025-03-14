@@ -468,11 +468,215 @@ console.log(partition(headA, 3));
 
 
 // todo Clone a linked list with random pointers.
+
+class NodeC {
+  constructor(val, next = null, random = null) {
+    this.val = val;
+    this.next = next;
+    this.random = random;
+  }
+}
+
+function cloneLinkedList(head) {
+  if (!head) return null;
+
+  // Step 1: Insert cloned nodes in between original nodes
+  let curr = head;
+  while (curr) {
+    let clonedNode = new NodeC(curr.val, curr.next, null);
+    curr.next = clonedNode;
+    curr = clonedNode.next;
+  }
+
+  // Step 2: Copy random pointers for cloned nodes
+  curr = head;
+  while (curr) {
+    if (curr.random) {
+      curr.next.random = curr.random.next;
+    }
+    curr = curr.next.next;
+  }
+
+  // Step 3: Separate original and cloned lists
+  let dummy = new NodeC(0);
+  let copy = dummy;
+  curr = head;
+  while (curr) {
+    copy.next = curr.next;
+    curr.next = curr.next.next;
+    copy = copy.next;
+    curr = curr.next;
+  }
+
+  return dummy.next;
+}
+
+
+let node1 = new NodeC(1);
+let node2 = new NodeC(2);
+let node3 = new NodeC(3);
+let node4 = new NodeC(4);
+let node5 = new NodeC(5);
+
+node1.random = node3;
+node2.random = node1;
+node3.random = node5;
+node4.random = node3;
+node5.random = node2;
+
+// console.log(cloneLinkedList(node1))
+
+
+
+
 // todo Split a linked list into two halves.
 
+// let fast = this.head; // Hari
+// let slow = this.head; //Pugazh
+// while (fast != null && fast.next != null) {
+//   slow = slow.next;
+//   fast = fast.next.next;
+// }
+
+
+class NodeD {
+  constructor(val, next = null) {
+    this.data = val;
+    this.next = next;
+  }
+}
+
+class ListD {
+  constructor() {
+    this.head = null;
+
+  }
+  insertLast(data) {
+    if (this.head === null) this.head = new Node(data)
+    else {
+      let current = this.head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = new NodeD(data)
+    }
+  }
+  splitLint() {
+    if (!this.head || !this.head.next) {
+      return { firstHalf: this.head, secondHalf: null };
+    }
+
+    let slow = this.head;
+    let fast = this.head;
+    let prev = null;
+
+    while (fast !== null && fast.next !== null) {
+      prev = slow;
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+
+    let firstHalf = this.head;
+    console.log(firstHalf)
+    let secondHalf = slow;
+    if (prev) {
+      prev.next = null;
+    }
+    console.log(firstHalf)
+
+    console.log(firstHalf)
+    console.log(secondHalf)
+    return { firstHalf, secondHalf };
+  }
+
+  mergeTwoLists(list1, list2) {
+
+    let dummy = new NodeD(-1);
+    let tail = dummy;
+
+    while (list1 !== null && list2 !== null) {
+      if (list1.data < list2.data) {
+        tail.next = list1;
+        list1 = list1.next;
+      }
+      else {
+        tail.next = list2;
+        list2 = list2.next;
+      }
+      tail = tail.next
+    }
+
+    tail.next = list1 !== null ? list1 : list2;
+
+    return dummy.next;
+  }
+  mergeSort(list) {
+    if (list == null || list.next == null) return list;
+
+    let prev = null;
+    let slow = list;
+    let fast = list;
+
+    while (fast!== null && fast.next !== null) {
+      prev=slow;
+      slow=slow.next;
+      fast=fast.next.next;
+    }
+
+    prev.next = null;
+
+    let left = this.mergeSort(list);   
+    let right = this.mergeSort(slow)
+
+    return this.mergeTwoLists(left,right)
+  }
+}
 
 
 
+
+let listD = new ListD();
+listD.insertLast(1);
+listD.insertLast(2);
+listD.insertLast(3);
+listD.insertLast(4);
+listD.insertLast(5);
+
+console.log(listD.splitLint());
 
 // todo Merge two sorted linked lists.
+
+
+
+
+let listE = new ListD();
+listE.insertLast(1);
+listE.insertLast(3);
+listE.insertLast(5);
+// listE.insertLast(4);
+// listE.insertLast(5);
+
+
+let listF = new ListD();
+listF.insertLast(2);
+listF.insertLast(4);
+listF.insertLast(6);
+// listF.insertLast(4);
+// listF.insertLast(5);
+
+console.log(listF.mergeTwoLists(listE.head, listF.head))
+
+
+
 // todo Sort a linked list using merge sort.
+
+let listL = new ListD();
+listL.insertLast(4)
+listL.insertLast(2)
+listL.insertLast(1)
+listL.insertLast(3)
+listL.insertLast(5)
+
+console.log(listL.mergeSort(listL.head))
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
