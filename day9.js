@@ -558,15 +558,168 @@ console.log(serializedData);
 
 console.log(tree1.Deserialize(serializedData));
 
-
-
 // // todo Find the level with the maximum sum in a binary tree.
 
-const treemax = new Tree()
+class TreeNode1 {
+  constructor(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+  }
+}
 
+function maxLevelSum(root) {
+  if (!root) return 0;
 
+  let queue = [root];
+  let maxSum = -Infinity;
+  let maxLevel = 0, level = 0;
 
+  while (queue.length > 0) {
+    let levelSize = queue.length;
+    let currentSum = 0;
+    level++;
+
+    for (let i = 0; i < levelSize; i++) {
+      let node = queue.shift();
+      currentSum += node.val;
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+      maxLevel = level;
+    }
+  }
+
+  return { maxLevel, maxSum };
+}
 
 // // todo Calculate the depth of the deepest leaf node.
+class TreeNode5 {
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class Tree5 {
+  constructor() {
+    this.root = null;
+  }
+  getTree() {
+    return this.root;
+  }
+  insertTree(data) {
+    if (this.root === null) {
+      this.root = new TreeNode5(data);
+    } else {
+      let curr = this.root;
+      while (true) {
+        if (data < curr.data) {
+          if (curr.left === null) {
+            curr.left = new TreeNode5(data);
+            break;
+          } else {
+            curr = curr.left;
+          }
+        } else {
+          if (curr.right === null) {
+            curr.right = new TreeNode5(data);
+            break;
+          } else {
+            curr = curr.right;
+          }
+        }
+      }
+    }
+  }
+
+  deepestLeaf(list = this.root, sum = 0) {
+
+    if (list === null) return sum - 1;
+
+    if (list.left === null && list.right === null) return sum;
+
+    let leftSum = list.left ? this.deepestLeaf(list.left, sum + 1) : sum
+    let rightSum = list.right ? this.deepestLeaf(list.right, sum + 1) : sum
+
+
+    return Math.max(leftSum, rightSum);
+
+  }
+  inOrderTraversal(root, nodes) {
+    if (root === null) return;
+    this.inOrderTraversal(root.left, nodes);
+    nodes.push(root);
+    this.inOrderTraversal(root.right, nodes);
+  }
+
+  buildBalancedBST(nodes, start, end) {
+    if (start > end) return null;
+
+    let mid = Math.floor((start + end) / 2);
+    let node = nodes[mid];
+
+    node.left = this.buildBalancedBST(nodes, start, mid - 1);
+    node.right = this.buildBalancedBST(nodes, mid + 1, end);
+
+    return node;
+  }
+  balanceBST() {
+    let nodes = [];
+    this.inOrderTraversal(this.root, nodes);
+    this.root = this.buildBalancedBST(nodes, 0, nodes.length - 1);
+  }
+  bstInsert(data) {
+    this.root = this.insertNode(this.root, data);
+  }
+  insertNode(root, data) {
+    if (root === null) {
+      return new TreeNode5(data);
+    }
+    if (data < root.data) {
+      root.left = this.insertNode(root.left, data);
+    } else {
+      root.right = this.insertNode(root.right, data);
+    }
+    return root;
+  }
+}
+const list5 = new Tree5();
+
+list5.insertTree(4);
+list5.insertTree(2);
+list5.insertTree(3);
+list5.insertTree(1);
+list5.insertTree(5);
+list5.insertTree(6);
+list5.insertTree(7);
+
+console.log(list5.deepestLeaf());
+
 // // todo Convert a BST to a balanced BST.
 
+const bstTree = new Tree5();
+
+bstTree.bstInsert(10);
+bstTree.bstInsert(5);
+bstTree.bstInsert(15);
+bstTree.bstInsert(2);
+bstTree.bstInsert(7);
+bstTree.bstInsert(12);
+bstTree.bstInsert(20);
+
+console.log(bstTree.getTree())
+console.log(bstTree.balanceBST())
+console.log(bstTree.getTree())
+
+
+
+
+
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
