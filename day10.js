@@ -525,16 +525,71 @@ function firstNonRepeatingStream(S) {
 
   return result;
 }
-
-
-console.log(firstNonRepeatingStream("aabc"));
-console.log(firstNonRepeatingStream("zzzyzx"));
-console.log(firstNonRepeatingStream("abacabad"));
+// console.log(firstNonRepeatingStream("aabc"));
+// console.log(firstNonRepeatingStream("zzzyzx"));
+// console.log(firstNonRepeatingStream("abacabad"));
 
 
 // // todo Merge two sorted arrays without using extra space (two-pointer).
 
+function mergeTwoSortArr(arr1 = [], arr2 = []) {
+
+  let n = arr1.length, m = arr2.length;
+  let i = n - 1, j = 0;
+
+  while (i >= 0 && j < m) {
+    if (arr1[i] > arr2[j]) {
+      [arr1[i], arr2[j]] = [arr2[j], arr1[i]];
+    }
+    i--;
+    j++;
+  }
+
+  arr1.sort((a, b) => a - b)
+  arr2.sort((a, b) => a - b)
+
+  return [arr1, arr2]
+
+}
+
+// console.log(mergeTwoSortArr([1, 3, 5, 7], [2, 4, 6])); 
+// console.log(mergeTwoSortArr([10, 12, 14, 16, 18], [1, 3, 8, 20])); 
+// console.log(mergeTwoSortArr([5, 6, 7, 8], [1, 2, 3, 4])); 
+// console.log(mergeTwoSortArr([1, 2, 3], [4, 5, 6])); 
+// console.log(mergeTwoSortArr([2, 5, 7, 9], [1, 3, 6, 8])); 
+// console.log(mergeTwoSortArr([100, 200, 300], [10, 20, 30])); 
+
 // // todo Find the largest subarray with a sum less than or equal to a given value (sliding window).
 
+function maxSubarrayLength(arr, S) {
+  let start = 0, sum = 0, maxLength = 0;
+
+  for (let end = 0; end < arr.length; end++) {
+    sum += arr[end];
 
 
+    console.log(sum)
+    while (sum > S) {
+      sum -= arr[start];
+      start++;
+    }
+
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+
+  return maxLength;
+}
+
+// console.log(maxSubarrayLength([3, 1, 2, 1, 4, 5, 1, 1], 7)); 
+// console.log(maxSubarrayLength([1, 2, 3, 4, 5], 9)); 
+// console.log(maxSubarrayLength([5, 1, 1, 1, 1, 1, 1], 5)); 
+// console.log(maxSubarrayLength([10, 20, 30, 40], 25)); 
+// console.log(maxSubarrayLength([1, 1, 1, 1, 1, 1], 3));
+// console.log(maxSubarrayLength([5, 10, 15, 20, 25], 50));
+// console.log(maxSubarrayLength([100, 200, 300], 50)); 
+// console.log(maxSubarrayLength([2, 3, 1, 2, 4, 3], 7));
+// console.log(maxSubarrayLength([], 10)); 
+// console.log(maxSubarrayLength([5], 5)); 
+
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
