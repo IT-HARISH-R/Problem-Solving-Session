@@ -149,7 +149,6 @@ function gcd(a, b) {
         }
         min--;
     }
-
 }
 // console.log("---------GCD------------", gcd(12, 18))
 // todo Check if a number is a palindrome.
@@ -177,7 +176,6 @@ function invertedTriangle(n) {
     //   * * *
     //    * *
     //     *
-
 
     for (let row = n; row > 0; row--) {
         let line = ""
@@ -225,7 +223,6 @@ function diamondPattern(n) {
     for (let row = 1; row <= n; row++) {
         let line = "";
         for (let col = 1; col <= n; col++) {
-
             if (row <= mid && col > mid - row && col < mid + row) {
                 line += "*"
             }
@@ -303,3 +300,6 @@ function checkerboardPattern(n) {
     }
 }
 checkerboardPattern(7)
+
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------

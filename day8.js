@@ -679,4 +679,7 @@ listL.insertLast(5)
 
 console.log(listL.mergeSort(listL.head))
 
+
+
+
 // ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------

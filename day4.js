@@ -225,7 +225,6 @@ function cumulativeOfSum(arr = []) {
 
     arr[ind] += arr[ind - 1]
   }
-
   return arr;
 }
 // console.log(cumulativeOfSum([1, 2, 3, 4, 5]))
@@ -267,7 +266,6 @@ function checkIsPalindromeArr(arr = []) {
 // console.log(checkIsPalindromeArr([10, -10, 10]))
 // console.log(checkIsPalindromeArr([0, 1, 2, 2, 1, 0]))
 
-
 // todo Find the intersection of two arrays.
 
 function intersectionOfTwoArr(arr1 = [], arr2 = []) {
@@ -285,7 +283,6 @@ function intersectionOfTwoArr(arr1 = [], arr2 = []) {
     }
   }
   return sectionArr
-
 }
 
 // console.log(intersectionOfTwoArr([1, 2, 2, 1], [2, 2]));
@@ -294,3 +291,5 @@ function intersectionOfTwoArr(arr1 = [], arr2 = []) {
 // console.log(intersectionOfTwoArr([1, 2, 3, 3], [3, 3, 3, 3]));
 // console.log(intersectionOfTwoArr([], [1, 2, 3]));
 // console.log(intersectionOfTwoArr([1, 1, 1], [1, 1]));          
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------

@@ -95,7 +95,6 @@ function difference(num1, num2) {
 }
 
 // todo Check if a number is even or odd.
-
 function checkNumber(num) {
   return num % 2 === 0 ? "even" : "odd"
 }
@@ -120,7 +119,6 @@ function findLargest(a, b, c, d) {
   if (d > largest) {
     largest = d;
   }
-
   return largest;
 }
 
@@ -161,7 +159,6 @@ function isUppercase(str) {
 
   return true;
 }
-
 // todo Print the reverse of a string.
 
 function reverseStr(str) {
@@ -171,7 +168,6 @@ function reverseStr(str) {
     }
     return reversed;
 }
-
 // todo Find the square of a number.
 function square(num) {
   return num ** 2;
@@ -195,3 +191,5 @@ module.exports = {
   reverseStr,
   square
 };
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------

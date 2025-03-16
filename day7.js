@@ -447,11 +447,13 @@ class priorityQueue {
     const node = { task, data }
     this.stack.push(node);
   }
+  
   pop() {
     if (this.isEmpty()) return 'Queue is empty';
     this.top--;
     this.stack.pop();
   }
+
   getStack() {
     if (this.top === -1) return 'Queue is empty'
     return [...this.stack]
@@ -477,6 +479,7 @@ class priorityQueue {
     return data
 
   }
+
   peek() {
     const newArr = [...this.stack];
 
@@ -510,7 +513,7 @@ function canReduceToEmptyString(s) {
   return stack.length === 0;
 }
 
-// Example usage
+
 // console.log(canReduceToEmptyString("abbaca"));
 // console.log(canReduceToEmptyString("abccba"));
 // console.log(canReduceToEmptyString("aabbcc"));
@@ -556,6 +559,7 @@ class Deque {
   size() {
     return this.items.length;
   }
+
 }
 
 const deque = new Deque();

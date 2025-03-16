@@ -311,3 +311,5 @@ console.log(countOccurrences("hello world, hello everyone", "hello"));
 console.log(countOccurrences("abababab", "ab")); 
 
 console.log(countOccurrences("aaaaaa", "aa")); 
+
+// ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------
