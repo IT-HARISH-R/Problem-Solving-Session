@@ -83,7 +83,7 @@ function selectionSortDESC(arr = []) {
   return arr;
 }
 // console.log(selectionSortDESC(arr));
-const arr = Array.from({ length: 9 }, () => Math.floor(Math.random() * 1000));
+// const arr = Array.from({ length: 9 }, () => Math.floor(Math.random() * 1000));
 // console.log(arr)
 // console.log(selectionSort(arr))
 // console.log(arr)

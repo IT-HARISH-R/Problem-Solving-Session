@@ -73,7 +73,6 @@ function reverse(arr = [], start = 0, end = arr.length - 1) {
     end--;
   }
 }
-
 function rotateByK(arr = [], k = 0) {
   // O(n)
   k = k % arr.length;
@@ -82,7 +81,7 @@ function rotateByK(arr = [], k = 0) {
   reverse(arr);
   console.log(arr);
 }
-// rotateByK([1, 2, 3, 4, 5, 6, 7], 2);
+// rotateByK([1, 2, 3, 4, 5, 6, 7], 4);
 // [2, 1, 3, 4, 5, 6, 7];
 // [2, 1, 7, 6, 5, 4, 3];
 // [3, 4, 5, 6, 7, 1, 2];
@@ -112,6 +111,7 @@ function sort(arr = []) {
 function removeDuplicates(arr = []) {
   console.log(arr);
   for (let ind = 0, slowInd = 0; ind < arr.length; ind++) {
+    console.log(arr[ind], arr[slowInd])
     if (arr[ind] !== arr[slowInd]) {
       slowInd++;
       arr[slowInd] = arr[ind];
@@ -123,6 +123,7 @@ function removeDuplicates(arr = []) {
   }
   return arr;
 }
+// console.log(removeDuplicates([1, 2,2, 3, 4, 4, 5, 5, 5, 6]))
 // console.log(
 // removeDuplicates(
 // sort(Array.from({ length: 25 }, () => Math.floor(Math.random() * 10)))
@@ -154,6 +155,7 @@ function mergeTwoSorted(arr1 = [], arr2 = []) {
   let left = 0;
   let right = 0;
   let sortedArr = [];
+
   for (let ind = 0; ind < arr1.length + arr2.length; ind++) {
     if (arr1[left] > arr2[right]) {
       sortedArr.push(arr2[right])
@@ -268,28 +270,22 @@ function checkIsPalindromeArr(arr = []) {
 
 // todo Find the intersection of two arrays.
 
-function intersectionOfTwoArr(arr1 = [], arr2 = []) {
-  const count = {}
-  const sectionArr = []
-
-  for (let ind = 0; ind < arr1.length; ind++) {
-    count[arr1[ind]] = (count[arr1[ind]] || 0) + 1;
-  }
-
-  for (let ind = 0; ind < arr2.length; ind++) {
-    if (count[arr2[ind]] > 0) {
-      sectionArr.push(arr2[ind]);
-      count[arr2[ind]]--
-    }
-  }
-  return sectionArr
+function intersectionOfTwoArr(arr1, arr2) {
+  let result = [];
+  arr1.forEach(item => {
+      if (arr2.includes(item)) {
+          result.push(item);
+      }
+  });
+  return result;
 }
 
+
 // console.log(intersectionOfTwoArr([1, 2, 2, 1], [2, 2]));
-// console.log(intersectionOfTwoArr([4, 9, 5], [9, 4, 9, 8, 4]));
+// console.log(intersectionOfTwoArr([4, 9, 5], [9, 8, 4]));
 // console.log(intersectionOfTwoArr([1, 2, 3], [4, 5, 6]));
 // console.log(intersectionOfTwoArr([1, 2, 3, 3], [3, 3, 3, 3]));
 // console.log(intersectionOfTwoArr([], [1, 2, 3]));
-// console.log(intersectionOfTwoArr([1, 1, 1], [1, 1]));          
+// console.log(intersectionOfTwoArr([1, 1, 1], [1, 1]));
 
 // ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------

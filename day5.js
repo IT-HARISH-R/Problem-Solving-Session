@@ -19,6 +19,9 @@ function linearSearch(arr = [], target = 0, start = 0) {
   }
   return -1;
 }
+
+// console.log(linearSearch([1,2,3,4,5,6,7],5))
+
 // array with duplicate values
 // console.log(
 //   linearSearch([3, 4, 3, 3, 5, 23, 6, 8, 75, 76, 33, 6, 4, 89, 3], 3)
@@ -46,6 +49,7 @@ function binarySearch(arr = [], target = 0) {
   }
   return -1;
 }
+console.log(binarySearch([9,7,5,3,2,1],5))
 
 // console.log(
 //   binarySearch(
@@ -176,6 +180,7 @@ function searchRotated(arr = [], target = 0) {
   }
   return -1;
 }
+
 // console.log(
 //   searchRotated(
 //     rotateByK(
@@ -390,6 +395,15 @@ function frequencyOfElements(arr = [], target) {
   return first === -1 ? 0 : last - first + 1;
 }
 
+function suma(arr = [], taget) {
+  let map = {}
+  for (let i = 0; i < arr.length; i++) {
+    map[arr[i]] = (map[arr[i]] || 0) + 1
+  }
+  return map[taget]
+}
+
+// console.log(suma([5, 5, 5, 6, 6, 7, 8], 6))
 // console.log(frequencyOfElements([5, 5, 5, 6, 6, 7, 8], 6))
 
 // todo Find the closest element to a target in a sorted array.
@@ -485,7 +499,7 @@ function peakIndex(arr = []) {
   if (end === 0) return 0
 
   while (start <= end) {
-    let mid = Math.floor(start + (end - start) / 2)
+    let mid = Math.floor(end - start / 2)
 
     if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) return mid;
 

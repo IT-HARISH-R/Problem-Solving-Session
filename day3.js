@@ -23,6 +23,7 @@ function countVowAndCons(str) {
     }
     return obj;
 }
+console.log(String.fromCharCode(65))
 // console.log(countVowAndCons("Convert a string to lowercase/uppercase."));
 //! Convert a string to lowercase/uppercase.
 
@@ -37,6 +38,7 @@ function toLowerCase(str) {
     }
     return res;
 }
+// console.log(String.fromCharCode(65,90,97,122))
 
 function toUpperCase(str) {
     let res = "";
@@ -206,23 +208,32 @@ function replaceSpaces(str = "") {
 
     return newStr;
 }
+// console.log(String.fromCharCode(65,90,97,122))
 // console.log(replaceSpaces("Hello World"))
 // console.log(replaceSpaces("  Leading and trailing spaces  "))
 // console.log(replaceSpaces("OneTwoThree`"))
 // console.log(replaceSpaces("This    has    multiple    spaces"))
 // todo Check if a string is an anagram and panagram of another.
 
-function anagramAndPanagram(str1 = "", str2 = "") {
-    let result = false
+function anagram(str1 = '', str2 = '') {
+    if (!str1 || !str2) return false;
 
-    str1 = str1.split("").sort().join("")
-    str2 = str2.split("").sort().join("")
+    str1.toLocaleLowerCase()
+    str2.toLocaleLowerCase()
 
-    result = str1 === str2;
+    const sortStr1 = str1.split("").sort().join("");
+    const sortStr2 = str2.split("").sort().join("");
+    const isAnagram = sortStr1 === sortStr2;
 
-    return result ? 'Anagram' : "Pangram"
+    const uniqueChars1 = new Set(str1);
+    const uniqueChars2 = new Set(str2);
+    const isPangram = [...uniqueChars1].every(char => uniqueChars2.has(char));
 
+    return `${isAnagram} ${isPangram}`
 }
+console.log(anagram("listen", "silent"))
+console.log(anagram("hello", "ohellox"))
+console.log(anagram("abcdef", "abcde"))
 
 // console.log(anagramAndPanagram("listen", "silent"))
 // console.log(anagramAndPanagram("The quick brown fox", "jumped over the lazy dog"))
@@ -231,22 +242,25 @@ function anagramAndPanagram(str1 = "", str2 = "") {
 
 // todo Count the number of words in a sentence.
 
-function numberOfWords(str=""){
+function numberOfWords(str = "") {
 
-    if(str==="") return 0;
+    if (str === "") return 0;
 
-    return str.split(/\s+/).length;
+    return str.trim().split(/\s+/).length;
 }
+
+
 // console.log(numberOfWords('Hello world'))
 // console.log(numberOfWords('SingleWord'))
+// console.log(numberOfWords('   This   is   an example sentence.  '))
 // console.log(numberOfWords('   Leading and trailing spaces    '))
 // console.log(numberOfWords('5'))
 // console.log(numberOfWords(''))
 
 // todo Find the first non-repeating character in a string.
 
-function firstNonRepeating(str="" ){
-    
+function firstNonRepeating(str = "") {
+
     const charCount = {};
 
     for (let char of str) {
@@ -255,11 +269,11 @@ function firstNonRepeating(str="" ){
 
     for (let char of str) {
         if (charCount[char] === 1) {
-            return char; 
+            return char;
         }
     }
 
-    return "_"; 
+    return "_";
 }
 // console.log(firstNonRepeating("aabbcdeff"));
 // console.log(firstNonRepeating("racecar"));
@@ -269,12 +283,12 @@ function firstNonRepeating(str="" ){
 // console.log(firstNonRepeating("z"));
 // todo Remove all vowels from a string.
 
-function removeAllVowels(str=''){
-    let newstr='';
-    const vowels ='aeiouAEIOU';
-    for(let char of str){
-        if(!vowels.includes(char)){
-            newstr+=char
+function removeAllVowels(str = '') {
+    let newstr = '';
+    const vowels = 'aeiouAEIOU';
+    for (let char of str) {
+        if (!vowels.includes(char)) {
+            newstr += char
         }
     }
     return newstr;
@@ -288,7 +302,7 @@ function removeAllVowels(str=''){
 
 // todo Find the shortest word in a sentence.
 
-function shortestWord(str=''){
+function shortestWord(str = '') {
     let words = str.trim().split(/\s+/);
 
     return words.reduce((shortest, current) =>
@@ -306,10 +320,10 @@ function countOccurrences(str, subStr) {
     return str.split(subStr).length - 1;
 }
 
-console.log(countOccurrences("hello world, hello everyone", "hello")); 
+console.log(countOccurrences("hello  world, hello everyone", "hello"));
 
-console.log(countOccurrences("abababab", "ab")); 
+console.log(countOccurrences("abababab", "ab"));
 
-console.log(countOccurrences("aaaaaa", "aa")); 
+console.log(countOccurrences("aaaaaa", "aa"));
 
 // ------------------xxxxxxxxxxxxxxx___END___xxxxxxxxxxxxxxx------------------

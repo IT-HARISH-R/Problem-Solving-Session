@@ -118,9 +118,8 @@ function lcm(a, b) {
         max++;
     }
 }
-
 let a = 12, b = 18;
-// console.log("---------LCM------------", lcm(a, b));
+console.log("---------LCM------------", lcm(a, b));
 
 // todo Generate a pyramid pattern of numbers.
 
@@ -150,7 +149,7 @@ function gcd(a, b) {
         min--;
     }
 }
-// console.log("---------GCD------------", gcd(12, 18))
+// console.log("---------GCD------------", gcd(3, 7))
 // todo Check if a number is a palindrome.
 
 function palindromeOFNumber(num) {
@@ -287,13 +286,13 @@ function divisorsNumbers(num) {
 
 function checkerboardPattern(n) {
     for (let i = 1; i <= n; i++) {
-        let line="";
+        let line = "";
         for (let j = 1; j <= n; j++) {
-            if((i+j)%2==0){
-                line+="."
+            if ((i + j) % 2 == 0) {
+                line += "."
             }
-            else{
-                line+="*"
+            else {
+                line += "*"
             }
         }
         console.log(line)
