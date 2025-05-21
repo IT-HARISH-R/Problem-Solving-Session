@@ -13,9 +13,10 @@ function Counter() {
         onClick={() => setCount(count + 1)}
       >
         Increment
-      </button>
+      </button> 
     </div>
   );
 }
 
 export default Counter;
+ 

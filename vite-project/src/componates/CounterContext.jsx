@@ -14,3 +14,4 @@ export function CounterProvider({ children }) {
     </CounterContext.Provider>
   );
 }
+ 
